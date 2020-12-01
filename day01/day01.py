@@ -2,6 +2,7 @@ import sys
 sys.path.insert(0, 'D:\\projects\\aoc2020\\')
 
 import inspect
+from codetiming import Timer
 
 import itertools
 import functools
@@ -9,6 +10,7 @@ import functools
 #from helper import importToIntArray
 from helper import loadingUtils, pretty
 
+@Timer()
 def runPart1(inFile: str, debug: bool = False) -> int:
     pretty.printHeader(1,1, inspect.stack()[0].function, inFile)
     result = 0
@@ -30,6 +32,7 @@ def runPart1(inFile: str, debug: bool = False) -> int:
     return result
 
 
+@Timer()
 def runPart2(inFile: str, debug: bool = False) -> int:
     pretty.printHeader(1,2,inspect.stack()[0].function, inFile)
     result = 0
