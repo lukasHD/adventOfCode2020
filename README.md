@@ -1,7 +1,7 @@
 # aoc2020
 
 ## Introduction
-My personal repository of python solutions for the 2020 Advent of Code Challenges. Learn more about Advent of Code [here](https://adventofcode.com/2020/about)
+My personal repository of python solutions for the 2020 Advent of Code Challenges. Learn more about Advent of Code [here](https://adventofcode.com/2020/about).
 
 ## Personal Learnings 
 ### Day 1 
