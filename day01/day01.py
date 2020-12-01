@@ -10,7 +10,7 @@ import functools
 from helper import loadingUtils, pretty
 
 def runPart1(inFile: str, debug: bool = False) -> int:
-    pretty.sayDayandPart(1,1, inspect.stack()[0].function, inFile)
+    pretty.printHeader(1,1, inspect.stack()[0].function, inFile)
     result = 0
     numbers = loadingUtils.importToIntArray(inFile)
     results = []
@@ -31,7 +31,7 @@ def runPart1(inFile: str, debug: bool = False) -> int:
 
 
 def runPart2(inFile: str, debug: bool = False) -> int:
-    pretty.sayDayandPart(1,2,inspect.stack()[0].function, inFile)
+    pretty.printHeader(1,2,inspect.stack()[0].function, inFile)
     result = 0
     numbers = loadingUtils.importToIntArray(inFile)
     results = []
