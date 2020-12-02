@@ -1,32 +1,29 @@
 import sys
-sys.path.insert(0, 'D:\\projects\\aoc2020\\')
-
 import inspect
 from codetiming import Timer
-
+sys.path.insert(0, 'D:\\projects\\aoc2020\\')
 from helper import loadingUtils, pretty
 
-day = 2
-def getPath():
-    return "day{:02d}".format(day)
+DAY = 2
+def get_path():
+    return "day{:02d}".format(DAY)
 
 @Timer()
-def runPart1(inFile: str, debug: bool = False) -> int:
-    pretty.printHeader(day, 1, inspect.stack()[0].function, inFile)
+def run_part_1(in_file: str, debug: bool = False) -> int:
+    pretty.printHeader(DAY, 1, inspect.stack()[0].function, in_file)
     result = 0
     # code here
     return result
 
 @Timer()
-def runPart2(inFile: str, debug: bool = False) -> int:
-    pretty.printHeader(day, 2, inspect.stack()[0].function, inFile)
+def run_part_2(in_file: str, debug: bool = False) -> int:
+    pretty.printHeader(DAY, 2, inspect.stack()[0].function, in_file)
     result = 0
     # code here
     return result
 
 if __name__ == "__main__":
-    runPart1(getPath() + "/test1", True)
-    runPart1(getPath() + "/input1")
-    runPart2(getPath() + "/test2", True)
-    runPart2(getPath() + "/input2")
-
+    run_part_1(get_path() + "/test1", True)
+    run_part_1(get_path() + "/input1")
+    run_part_2(get_path() + "/test2", True)
+    run_part_2(get_path() + "/input2")

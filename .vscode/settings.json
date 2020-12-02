@@ -1,5 +1,4 @@
 {
-    // "python.pythonPath": "d:\\projects\\aoc2020\\_old\\Scripts\\python.exe",
     "python.pythonPath": ".venv\\Scripts\\python.exe",
     "python.testing.pytestArgs": [
         "."
@@ -13,8 +12,5 @@
         "--rcfile",
         ".pylintrc"
     ],
-    // "python.linting.pylintArgs": [
-    //     "--init-hook",
-    //     "import sys; sys.path.append('d:\\projects\\aoc2020\\')"
-    // ]
+    // "python.envFile": "${workspaceFolder}/.env"
 }

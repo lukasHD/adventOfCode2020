@@ -1,12 +1,22 @@
 import day__ as day
 
-inputFolder = day.getPath()
+INPUTFOLDER = day.get_path()
 
-def test_part1():
-    result = day.runPart1(inputFolder+"/test1")
+def test_part_1():
+    result = day.run_part_1(INPUTFOLDER+"/test1")
     assert result == 0
 
 
-def test_part2():
-    result = day.runPart2(inputFolder+"/test2")
+def test_part_1_real():
+    result = day.run_part_1(INPUTFOLDER+"/input1")
+    assert result == 0
+
+
+def test_part_2():
+    result = day.run_part_2(INPUTFOLDER+"/test2")
+    assert result == 0
+
+
+def test_part_2_real():
+    result = day.run_part_2(INPUTFOLDER+"/input2")
     assert result == 0
