@@ -50,6 +50,7 @@ def parseInput(password_line: str) -> (str, int, int, str):
     Typical Input Line:
     1-3 a: abcde
     """
+    # set types of variables
     password: str   = ""
     min_number: int = -1
     max_number: int = -1
