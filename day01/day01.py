@@ -1,3 +1,6 @@
+"""
+DAY 1
+"""
 import sys
 sys.path.insert(0, 'D:\\projects\\aoc2020\\')
 
@@ -9,14 +12,14 @@ import functools
 
 from helper import loadingUtils, pretty
 
-day = 1
+DAY = 1
 def getPath():
-    return "day{:02d}".format(day)
+    return "day{:02d}".format(DAY)
 
 
 @Timer()
 def runPart1(inFile: str, debug: bool = False) -> int:
-    pretty.printHeader(day,1, inspect.stack()[0].function, inFile)
+    pretty.printHeader(DAY,1, inspect.stack()[0].function, inFile)
     result = 0
     numbers = loadingUtils.importToIntArray(inFile)
     results = []
@@ -38,16 +41,20 @@ def runPart1(inFile: str, debug: bool = False) -> int:
 
 
 @Timer()
-def runPart2(inFile: str, debug: bool = False) -> int:
-    pretty.printHeader(day,2,inspect.stack()[0].function, inFile)
+def run_part_2(in_file: str, debug: bool = False) -> int:
+    """
+    Runs part 2 of the day
+    """
+    pretty.printHeader(DAY,2,inspect.stack()[0].function, in_file)
     result = 0
-    numbers = loadingUtils.importToIntArray(inFile)
+    numbers = loadingUtils.importToIntArray(in_file)
     results = []
-    # Code here 
-    ## itertools.product(numbers, repeat=3) gives many repetitions 
+    # Code here
+    ## itertools.product(numbers, repeat=3) gives many repetitions
     for tripel in itertools.combinations(numbers, 3):
-        if debug: print(tripel)
-        if (functools.reduce(lambda a,b : a+b, tripel) == 2020):
+        if debug: 
+            print(tripel)
+        if functools.reduce(lambda a,b : a+b, tripel) == 2020 :
             results.append(tripel)
     print(results)
     print(len(results))
@@ -61,5 +68,5 @@ def runPart2(inFile: str, debug: bool = False) -> int:
 if __name__ == "__main__":
     runPart1(getPath() + "/test1", True)
     runPart1(getPath() + "/input")
-    runPart2(getPath() + "/test1", True)
-    runPart2(getPath() + "/input")
+    run_part_2(getPath() + "/test1", True)
+    run_part_2(getPath() + "/input")
