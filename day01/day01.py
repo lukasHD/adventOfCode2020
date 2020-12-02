@@ -29,10 +29,11 @@ def runPart1(inFile: str, debug: bool = False) -> int:
                 results.append((a,b))
     print(results)
     print(len(results))
-    assert(len(results) != 0)
-    assert(len(results[0]) == 2)
+    assert len(results) != 0
+    assert len(results[0]) == 2
     result = results[0][0] * results[0][1]
-    print("Numbers {} and {} add to 2020 and have a product of {}".format(results[0][0], results[0][1], result))
+    print("Numbers {} and {} add to 2020 and have a product of {}"
+            .format(results[0][0], results[0][1], result))
     return result
 
 
@@ -50,11 +51,11 @@ def runPart2(inFile: str, debug: bool = False) -> int:
             results.append(tripel)
     print(results)
     print(len(results))
-    assert(len(results) != 0)
-    assert(len(results[0]) == 3)
-    winnerTripel = results[0]
+    assert len(results) != 0
+    assert len(results[0]) == 3
+    winner_tripel = results[0]
     result = functools.reduce(lambda a,b: a*b, results[0])
-    print("Numbers {} add to 2020 and have a product of {}".format(winnerTripel, result))
+    print("Numbers {} add to 2020 and have a product of {}".format(winner_tripel, result))
     return result
 
 if __name__ == "__main__":

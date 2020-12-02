@@ -1,5 +1,6 @@
 {
-    "python.pythonPath": "d:\\projects\\aoc2020\\venv\\Scripts\\python.exe",
+    // "python.pythonPath": "d:\\projects\\aoc2020\\_old\\Scripts\\python.exe",
+    "python.pythonPath": ".venv\\Scripts\\python.exe",
     "python.testing.pytestArgs": [
         "."
     ],
@@ -7,5 +8,13 @@
     "python.testing.nosetestsEnabled": false,
     "python.testing.pytestEnabled": true, 
     "git.postCommitCommand": "sync",
-    "python.linting.enabled": true
+    "python.linting.enabled": true,
+    "python.linting.pylintArgs": [
+        "--rcfile",
+        ".pylintrc"
+    ],
+    // "python.linting.pylintArgs": [
+    //     "--init-hook",
+    //     "import sys; sys.path.append('d:\\projects\\aoc2020\\')"
+    // ]
 }
