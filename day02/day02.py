@@ -6,14 +6,14 @@ from codetiming import Timer
 
 from helper import loadingUtils, pretty
 
-day = 2
-def getPath():
-    return "day{:02d}".format(day)
+DAY = 2
+def get_path():
+    return "day{:02d}".format(DAY)
 
 
-def validate_password_rules(password: str, 
-                            min_number: int, 
-                            max_number: int, 
+def validate_password_rules(password: str,
+                            min_number: int,
+                            max_number: int,
                             test_char: str) -> bool:
     """
     Old Password Rules
@@ -27,9 +27,9 @@ def validate_password_rules(password: str,
     return number_matching_chars >= min_number and number_matching_chars <= max_number
 
 
-def validate_password_rules2(password: str, 
-                             min_number: int, 
-                             max_number: int, 
+def validate_password_rules2(password: str,
+                             min_number: int,
+                             max_number: int,
                              test_char: str) -> bool:
     """
     New Password Rules
@@ -72,7 +72,7 @@ def parse_input(password_line: str) -> (str, int, int, str):
 
 @Timer()
 def run_part_1(in_file: str, debug: bool = False) -> int:
-    pretty.printHeader(day, 1, inspect.stack()[0].function, in_file)
+    pretty.printHeader(DAY, 1, inspect.stack()[0].function, in_file)
     result = 0
     passwords_list = loadingUtils.importToArray(in_file)
     results = []
@@ -86,7 +86,7 @@ def run_part_1(in_file: str, debug: bool = False) -> int:
 
 @Timer()
 def run_part_2(in_file: str, debug: bool = False) -> int:
-    pretty.printHeader(day, 2, inspect.stack()[0].function, in_file)
+    pretty.printHeader(DAY, 2, inspect.stack()[0].function, in_file)
     result = 0
     passwords_list = loadingUtils.importToArray(in_file)
     results = []
@@ -99,7 +99,7 @@ def run_part_2(in_file: str, debug: bool = False) -> int:
     return result
 
 if __name__ == "__main__":
-    run_part_1(getPath() + "/test1", True)
-    run_part_1(getPath() + "/input1")
-    run_part_2(getPath() + "/test1", True)
-    run_part_2(getPath() + "/input1")
+    run_part_1(get_path() + "/test1", True)
+    run_part_1(get_path() + "/input1")
+    run_part_2(get_path() + "/test1", True)
+    run_part_2(get_path() + "/input1")
