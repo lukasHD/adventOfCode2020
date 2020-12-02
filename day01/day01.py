@@ -10,10 +10,6 @@ import functools
 from helper import loadingUtils, pretty
 
 day = 1
-
-import os
-import sys
-
 def getPath():
     return "day{:02d}".format(day)
 

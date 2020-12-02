@@ -7,10 +7,6 @@ from codetiming import Timer
 from helper import loadingUtils, pretty
 
 day = 2
-
-import os
-import sys
-
 def getPath():
     return "day{:02d}".format(day)
 
