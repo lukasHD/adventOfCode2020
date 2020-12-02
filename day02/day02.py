@@ -29,8 +29,8 @@ def runPart2(inFile: str, debug: bool = False) -> int:
     return result
 
 if __name__ == "__main__":
-    runPart1(getPath + "/test1", True)
-    runPart1(getPath + "/input1")
-    runPart2(getPath + "/test2", True)
-    runPart2(getPath + "/input2")
+    runPart1(getPath() + "/test1", True)
+    runPart1(getPath() + "/input1")
+    runPart2(getPath() + "/test2", True)
+    runPart2(getPath() + "/input2")
 
