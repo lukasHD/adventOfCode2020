@@ -45,7 +45,7 @@ def validate_password_rules2(password: str,
     return (val1 == test_char) ^ (val2 == test_char)
 
 
-def parseInput(password_line: str) -> (str, int, int, str):
+def parse_input(password_line: str) -> (str, int, int, str):
     """
     Typical Input Line:
     1-3 a: abcde
@@ -71,13 +71,13 @@ def parseInput(password_line: str) -> (str, int, int, str):
 
 
 @Timer()
-def runPart1(inFile: str, debug: bool = False) -> int:
-    pretty.printHeader(day, 1, inspect.stack()[0].function, inFile)
+def run_part_1(in_file: str, debug: bool = False) -> int:
+    pretty.printHeader(day, 1, inspect.stack()[0].function, in_file)
     result = 0
-    passwords_list = loadingUtils.importToArray(inFile)
+    passwords_list = loadingUtils.importToArray(in_file)
     results = []
     for password_line in passwords_list:
-        (password, min_number, max_number, test_char) = parseInput(password_line)
+        (password, min_number, max_number, test_char) = parse_input(password_line)
         if validate_password_rules(password, min_number, max_number, test_char):
             results.append(password)
     result = len(results)
@@ -85,13 +85,13 @@ def runPart1(inFile: str, debug: bool = False) -> int:
     return result
 
 @Timer()
-def runPart2(inFile: str, debug: bool = False) -> int:
-    pretty.printHeader(day, 2, inspect.stack()[0].function, inFile)
+def run_part_2(in_file: str, debug: bool = False) -> int:
+    pretty.printHeader(day, 2, inspect.stack()[0].function, in_file)
     result = 0
-    passwords_list = loadingUtils.importToArray(inFile)
+    passwords_list = loadingUtils.importToArray(in_file)
     results = []
     for password_line in passwords_list:
-        (password, min_number, max_number, test_char) = parseInput(password_line)
+        (password, min_number, max_number, test_char) = parse_input(password_line)
         if validate_password_rules2(password, min_number, max_number, test_char):
             results.append(password)
     result = len(results)
@@ -99,7 +99,7 @@ def runPart2(inFile: str, debug: bool = False) -> int:
     return result
 
 if __name__ == "__main__":
-    runPart1(getPath() + "/test1", True)
-    runPart1(getPath() + "/input1")
-    runPart2(getPath() + "/test1", True)
-    runPart2(getPath() + "/input1")
+    run_part_1(getPath() + "/test1", True)
+    run_part_1(getPath() + "/input1")
+    run_part_2(getPath() + "/test1", True)
+    run_part_2(getPath() + "/input1")
