@@ -7,12 +7,20 @@ from codetiming import Timer
 import itertools
 import functools
 
-#from helper import importToIntArray
 from helper import loadingUtils, pretty
+
+day = 1
+
+import os
+import sys
+
+def getPath():
+    return "day{:02d}".format(day)
+
 
 @Timer()
 def runPart1(inFile: str, debug: bool = False) -> int:
-    pretty.printHeader(1,1, inspect.stack()[0].function, inFile)
+    pretty.printHeader(day,1, inspect.stack()[0].function, inFile)
     result = 0
     numbers = loadingUtils.importToIntArray(inFile)
     results = []
@@ -34,7 +42,7 @@ def runPart1(inFile: str, debug: bool = False) -> int:
 
 @Timer()
 def runPart2(inFile: str, debug: bool = False) -> int:
-    pretty.printHeader(1,2,inspect.stack()[0].function, inFile)
+    pretty.printHeader(day,2,inspect.stack()[0].function, inFile)
     result = 0
     numbers = loadingUtils.importToIntArray(inFile)
     results = []
@@ -54,8 +62,7 @@ def runPart2(inFile: str, debug: bool = False) -> int:
     return result
 
 if __name__ == "__main__":
-    runPart1("day01/test1", True)
-    runPart1("day01/input")
-    runPart2("day01/test1", True)
-    runPart2("day01/input")
-    pass
+    runPart1(getPath() + "/test1", True)
+    runPart1(getPath() + "/input")
+    runPart2(getPath() + "/test1", True)
+    runPart2(getPath() + "/input")
