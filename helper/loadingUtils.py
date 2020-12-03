@@ -17,3 +17,11 @@ def importToIntArray(inFile):
         for line in lines:
             out.append(int(line.strip('\n')))
     return out
+
+
+def importTo2DArray(in_file):
+    out = []
+    with open(in_file) as lines:
+        for line in lines:
+            out.append(list(line.strip("\n")))
+    return out

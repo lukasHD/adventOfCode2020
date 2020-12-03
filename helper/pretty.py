@@ -22,3 +22,15 @@ def printHeader(day: int, part: int, fctname: str, fname:  str):
     for line in lines:
         printWrapedString(line, buffer)
     printLine(decorator, lenDecorator)
+
+
+def print2DArray(map_in):
+    for line in map_in:
+        print(line)
+
+
+def print2DMap(map_in):
+    print()
+    for line in map_in:
+        print("".join(line))
+    print()
