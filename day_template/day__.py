@@ -13,6 +13,7 @@ def run_part_1(in_file: str, debug: bool = False) -> int:
     pretty.printHeader(DAY, 1, inspect.stack()[0].function, in_file)
     result = 0
     # code here
+    print("Result = {}".format(result))
     return result
 
 @Timer()
@@ -20,6 +21,7 @@ def run_part_2(in_file: str, debug: bool = False) -> int:
     pretty.printHeader(DAY, 2, inspect.stack()[0].function, in_file)
     result = 0
     # code here
+    print("Result = {}".format(result))
     return result
 
 if __name__ == "__main__":
