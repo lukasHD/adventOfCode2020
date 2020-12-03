@@ -13,10 +13,8 @@ def get_path():
 def get_path_traverse_diagonal(treemap, delta: (int, int) = (1,1), start_pos: (int, int) = (0,0)):
     within_bounds = True
     out_list = []
-    x = start_pos[0]
-    y = start_pos[1]
-    dx = delta[0]
-    dy = delta[1]
+    x,y    = start_pos
+    dx, dy = delta
     size_x = len(treemap)
     size_y = len(treemap[0])
     while within_bounds:
@@ -26,10 +24,10 @@ def get_path_traverse_diagonal(treemap, delta: (int, int) = (1,1), start_pos: (i
             # do the next step
             x += dx
             y += dy
+            # wrap around in y direction
             y = y%size_y
-        except IndexError as exception:
+        except IndexError:
             #we are out of bounds
-            print(exception)
             within_bounds = False
     return out_list
 
@@ -51,11 +49,12 @@ def run_part_2(in_file: str, debug: bool = False) -> int:
     treemap = loadingUtils.importTo2DArray(in_file)
     if debug: pretty.print2DMap(treemap)
     list_of_directions = [(1,1),(1,3),(1,5),(1,7),(2,1)]
-    list_of_hit_trees = []
+    number_of_trees_per_run = []
     for direction in list_of_directions:
-        list_of_hit_trees.append(len(list(filter(lambda x: x == "#", get_path_traverse_diagonal(treemap, direction)))))
-    print(list_of_hit_trees)
-    result = functools.reduce(lambda x,y: x*y, list_of_hit_trees)
+        number_of_trees_per_run.append(len(list(filter(lambda x: x == "#",
+                                                 get_path_traverse_diagonal(treemap, direction)))))
+    print(number_of_trees_per_run)
+    result = functools.reduce(lambda x,y: x*y, number_of_trees_per_run)
     print("Result = {}".format(result))
     return result
 
