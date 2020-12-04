@@ -25,3 +25,30 @@ def importTo2DArray(in_file):
         for line in lines:
             out.append(list(line.strip("\n")))
     return out
+
+def import_multiline(in_file: str, separator: str = "empty Line", joinString: bool = True):
+    out = []
+    block = []
+    if separator != "empty Line":
+        raise ValueError('Not Implemented')
+    if joinString != True:
+        raise ValueError('Not Implemented')
+    with open(in_file) as lines:
+        for line in lines:
+            # print("Line")
+            # print(list(line))
+            if line == "\n":
+                # print("########### Finished Block")
+                # print(block)
+                # print("###########")
+                out.append(" ".join(block))
+                block = []
+
+            else: 
+                block.append(line.strip())
+            # print(block)
+        # append last block aswell
+        # print(block)
+        out.append(" ".join(block))
+
+    return out

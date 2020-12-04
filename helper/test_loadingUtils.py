@@ -25,3 +25,13 @@ def test_importToArray():
 def test_importToIntArray():
     out = loadingUtils.importToIntArray("helper/test_input_importToArray")
     assert out == [2,4,6,8,99,-42]
+
+
+def test_import_multiline():
+    out = loadingUtils.import_multiline("helper/test_multiline")
+    assert out == ["Line 1 Line 2 Line 3", "Line 4 Line 5"]
+
+
+def test_import_multiline2():
+    out = loadingUtils.import_multiline("helper/test_multiline_2")
+    assert out == ["Line 1 Line 2 Line 3", "Line 4 Line 5"]
