@@ -105,6 +105,17 @@ def run_part_1(in_file: str, debug: bool = False) -> int:
 def run_part_2(in_file: str, debug: bool = False) -> int:
     pretty.printHeader(DAY, 2, inspect.stack()[0].function, in_file)
     result = 0
+    rules = loadingUtils.importToArray(in_file)
+    rule_dict = {}
+    for rule_str in rules:
+        parent, child_list = rule_to_dict(rule_str)
+        if child_list == []:
+            if debug: print("{} --> no children".format(parent))
+            rule_dict[str(parent)] = []    
+            continue
+        if debug: print("{} --> {}".format(parent, ", ".join(map(str,list(zip(*child_list))[1]))))
+        rule_dict[str(parent)] = list(map(str,list(zip(*child_list))[1]))
+    if debug: print(rule_dict)
     # code here
     print("Result = {}".format(result))
     return result
@@ -112,5 +123,6 @@ def run_part_2(in_file: str, debug: bool = False) -> int:
 if __name__ == "__main__":
     run_part_1(get_path() + "/test1", True)
     run_part_1(get_path() + "/input1")
-    # run_part_2(get_path() + "/test2", True)
+    run_part_2(get_path() + "/test1", True)
+    run_part_2(get_path() + "/test2", True)
     # run_part_2(get_path() + "/input2")
