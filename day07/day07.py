@@ -69,6 +69,6 @@ def run_part_2(in_file: str, debug: bool = False) -> int:
 
 if __name__ == "__main__":
     run_part_1(get_path() + "/test1", True)
-    # run_part_1(get_path() + "/input1")
+    run_part_1(get_path() + "/input1")
     # run_part_2(get_path() + "/test2", True)
     # run_part_2(get_path() + "/input2")
