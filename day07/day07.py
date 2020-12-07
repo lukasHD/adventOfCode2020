@@ -48,7 +48,9 @@ def run_part_1(in_file: str, debug: bool = False) -> int:
             print("Has no Children")
             continue
         for child in children.split(", "):
-            print("  ---- {}".format(child))
+            (num, qual, col, null) = child.split(" ")
+            c_col = Color(qual+" "+col)
+            print("  ---- {}x {}".format(num, c_col))
     # code here
     print("Result = {}".format(result))
     return result
