@@ -57,7 +57,7 @@ def rule_to_dict(rule_str: str):
     for child in children.split(", "):
         (num, qual, col, null) = child.split(" ")
         c_col = Color(qual+" "+col)
-        child_list.append((num, c_col))
+        child_list.append((int(num), str(c_col)))
         #print("  |___ {}x {}".format(num, c_col))
     return [parent, child_list]
 
@@ -114,7 +114,7 @@ def run_part_2(in_file: str, debug: bool = False) -> int:
             rule_dict[str(parent)] = []    
             continue
         if debug: print("{} --> {}".format(parent, ", ".join(map(str,list(zip(*child_list))[1]))))
-        rule_dict[str(parent)] = list(map(str,list(zip(*child_list))[1]))
+        rule_dict[str(parent)] = child_list
     if debug: print(rule_dict)
     # code here
     print("Result = {}".format(result))

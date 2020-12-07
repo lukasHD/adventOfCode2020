@@ -66,5 +66,5 @@ def test_part_2_2():
 
 
 def test_part_2_real():
-    result = day.run_part_2(INPUTFOLDER+"/input2")
+    result = day.run_part_2(INPUTFOLDER+"/input1")
     assert result == 0
