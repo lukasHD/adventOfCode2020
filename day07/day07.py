@@ -35,6 +35,18 @@ class Color:
         return "{} {}".format(self.qualifyer, self.name)
 
 
+def rule_to_dict(rule_str: str):
+    (parent_str, children) = rule_str[:-1].split(" bags contain ")
+    parent = Color(parent_str)
+    print("{}  ->  {}".format(parent, children))
+    if children == "no other bags":
+        print("Has no Children")
+        return 0
+    for child in children.split(", "):
+        (num, qual, col, null) = child.split(" ")
+        c_col = Color(qual+" "+col)
+        print("  |___ {}x {}".format(num, c_col))
+
 
 @Timer()
 def run_part_1(in_file: str, debug: bool = False) -> int:
@@ -42,15 +54,7 @@ def run_part_1(in_file: str, debug: bool = False) -> int:
     result = 0
     rules = loadingUtils.importToArray(in_file)
     for rule_str in rules:
-        (parent, children) = rule_str[:-1].split(" bags contain ")
-        print("{}  ->  {}".format(parent, children))
-        if children == "no other bags":
-            print("Has no Children")
-            continue
-        for child in children.split(", "):
-            (num, qual, col, null) = child.split(" ")
-            c_col = Color(qual+" "+col)
-            print("  ---- {}x {}".format(num, c_col))
+        rule_to_dict(rule_str)
     # code here
     print("Result = {}".format(result))
     return result
