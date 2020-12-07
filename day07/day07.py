@@ -34,28 +34,70 @@ class Color:
     def __str__(self):
         return "{} {}".format(self.qualifyer, self.name)
 
+    def __hash__(self):
+        return hash((self.qualifyer, self.name))
+
+    def __eq__(self, other):
+        return (self.qualifyer, self.name) == (other.qualifyer, other.name)
+
+    def __ne__(self, other):
+        # Not strictly necessary, but to avoid having both x==y and x!=y
+        # True at the same time
+        return not(self == other)
+
 
 def rule_to_dict(rule_str: str):
     (parent_str, children) = rule_str[:-1].split(" bags contain ")
     parent = Color(parent_str)
-    print("{}  ->  {}".format(parent, children))
+    #print("{}  ->  {}".format(parent, children))
     if children == "no other bags":
-        print("Has no Children")
-        return 0
+        #print("Has no Children")
+        return [parent, []]
+    child_list = []
     for child in children.split(", "):
         (num, qual, col, null) = child.split(" ")
         c_col = Color(qual+" "+col)
-        print("  |___ {}x {}".format(num, c_col))
+        child_list.append((num, c_col))
+        #print("  |___ {}x {}".format(num, c_col))
+    return [parent, child_list]
 
+
+def find_valid_bags(mydict, goal):
+    def _contains_goal_bag(mydict, key):
+        if goal in mydict[key]:
+            return True
+        for value in mydict[key]:
+            if _contains_goal_bag(mydict, value):
+                return True
+        return False
+    
+    valid_keys = set()
+    for key in mydict.keys():
+        print(key)
+        if key == goal:
+            continue
+        if _contains_goal_bag(mydict, key):
+            valid_keys.add(key)
+    return valid_keys
 
 @Timer()
 def run_part_1(in_file: str, debug: bool = False) -> int:
     pretty.printHeader(DAY, 1, inspect.stack()[0].function, in_file)
     result = 0
     rules = loadingUtils.importToArray(in_file)
+    rule_dict = {}
     for rule_str in rules:
-        rule_to_dict(rule_str)
-    # code here
+        parent, child_list = rule_to_dict(rule_str)
+        if child_list == []:
+            if debug: print("no children")
+            rule_dict[str(parent)] = []    
+            continue
+        if debug: print("{} --> {}".format(parent, ", ".join(map(str,list(zip(*child_list))[1]))))
+        rule_dict[str(parent)] = list(map(str,list(zip(*child_list))[1]))
+    if debug: print(rule_dict)
+    valid_bags = find_valid_bags(rule_dict, "shiny gold")
+    print(valid_bags)
+    result = len(valid_bags)
     print("Result = {}".format(result))
     return result
 
