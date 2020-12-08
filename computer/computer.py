@@ -60,7 +60,7 @@ class Computer():
             The instruction immediately below it is executed next.
         """
         opcode, arg  = self.program[self.i_pointer]
-        if self.debug: 
+        if self.debug:
             self.print_status()
             print("                                                 instr -- {:5} {: 4d}".format(opcode, arg))
         self.history_calls.append(self.i_pointer)
@@ -84,7 +84,7 @@ class Computer():
             # keep steping while running
             self.step()
             # Break Conditions here
-            if self.i_pointer in self.history_calls: 
+            if self.i_pointer in self.history_calls:
                 self.running = False
                 self.halt_reason = "LOOP"
             if self.i_pointer >= len(self.program):
