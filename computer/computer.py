@@ -1,5 +1,6 @@
-def say_it():
-    print("I'm a computer")
+"""
+This should keep all things about the computer
+"""
 
 class Computer():
     program = []
