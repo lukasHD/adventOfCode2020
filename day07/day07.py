@@ -80,6 +80,15 @@ def find_valid_bags(mydict, goal):
             valid_keys.add(key)
     return valid_keys
 
+
+def count_bags(mydict, color):
+    count = 1
+    for num, value in mydict[color]:
+        print("{}   {}".format(num, value))
+        count += num*count_bags(mydict, value)
+    return count
+
+
 @Timer()
 def run_part_1(in_file: str, debug: bool = False) -> int:
     pretty.printHeader(DAY, 1, inspect.stack()[0].function, in_file)
@@ -116,6 +125,9 @@ def run_part_2(in_file: str, debug: bool = False) -> int:
         if debug: print("{} --> {}".format(parent, ", ".join(map(str,list(zip(*child_list))[1]))))
         rule_dict[str(parent)] = child_list
     if debug: print(rule_dict)
+    counted_bags = count_bags(rule_dict, "shiny gold")
+    print(counted_bags)
+    result = counted_bags-1
     # code here
     print("Result = {}".format(result))
     return result
@@ -125,4 +137,4 @@ if __name__ == "__main__":
     run_part_1(get_path() + "/input1")
     run_part_2(get_path() + "/test1", True)
     run_part_2(get_path() + "/test2", True)
-    # run_part_2(get_path() + "/input2")
+    run_part_2(get_path() + "/input1")
