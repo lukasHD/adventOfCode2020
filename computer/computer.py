@@ -2,9 +2,6 @@ def say_it():
     print("I'm a computer")
 
 class Computer():
-    """
-    computerClass
-    """
     program = []
     accumulator = 0
     i_pointer = 0
@@ -27,12 +24,6 @@ class Computer():
         self.reset()
         self.program = []
         self.debug = False
-
-    def print_name(self):
-        """
-        test Class
-        """
-        print("In computer Class")
 
     def print_progcode(self):
         for k, line in enumerate(self.program):
@@ -64,7 +55,7 @@ class Computer():
             for example, jmp +2 would skip the next instruction, jmp +1 would continue
             to the instruction immediately below it, and jmp -20 would cause the instruction
             20 lines above to be executed next.
-        nop stands for No OPeration - it does nothing. 
+        nop stands for No OPeration - it does nothing.
             The instruction immediately below it is executed next.
         """
         opcode, arg  = self.program[self.i_pointer]
@@ -89,7 +80,9 @@ class Computer():
         self.running = True
         self.halt_reason = ""
         while self.running:
+            # keep steping while running
             self.step()
+            # Break Conditions here
             if self.i_pointer in self.history_calls: 
                 self.running = False
                 self.halt_reason = "LOOP"
@@ -100,29 +93,33 @@ class Computer():
             print("Finished run_once caused by {}".format(self.halt_reason))
 
     def run_day08_1(self):
+        """
+        return value before looping
+        """
         self.run_once()
         return self.accumulator
 
     def run_day08_2(self):
+        """
+        fix program by swapping one jmp and nop operation instruction without changing arguments
+        """
         self.debug = False
         for k, val in enumerate(self.program):
-            print(k,end=" ")
-            op, arg = val
+            op = val[0]
+            old_op = op
+            new_op = ""
             if op == "nop":
-                self.program[k][0] = "jmp"
-                self.reset()
-                self.run_once(silent=True)
-                if self.halt_reason == "FINISHED":
-                    print()
-                    return self.accumulator
-                self.program[k][0] = "nop"
-            elif op == "jmp": 
-                self.program[k][0] = "nop"
-                self.reset()
-                self.run_once(silent=True)
-                if self.halt_reason == "FINISHED":
-                    print()
-                    return self.accumulator
-                self.program[k][0] = "jmp"
+                new_op = "jmp"
+            elif op == "jmp":
+                new_op = "nop"
             else:
                 continue
+            print(k,end=" ")
+            self.program[k][0] = new_op
+            self.reset()
+            self.run_once(silent=True)
+            if self.halt_reason == "FINISHED":
+                print()
+                return self.accumulator
+            # restore original program
+            self.program[k][0] = old_op
