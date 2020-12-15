@@ -103,6 +103,6 @@ def test_07_b():
 #     assert result == 0
 
 
-# def test_part_2_real():
-#     result = day.run_part_2([0,14,1,3,7,9])
-#     assert result == 1876406
+def test_part_2_real():
+    result = day.run_part_2([0,14,1,3,7,9])
+    assert result == 1876406
