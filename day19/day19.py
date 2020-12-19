@@ -38,7 +38,8 @@ def convert(subrule, rules):
         if rule[0] == "\"" and rule[2] == "\"":
             new = new + rule[1]
         else:
-            new = new + "(?:" + convert(rules[el], rules) + ")"
+            new = new + "(" + convert(rules[el], rules) + ")"
+            #new = new + "(?:" + convert(rules[el], rules) + ")"
     return deepcopy(new)
 
 
@@ -87,6 +88,7 @@ def gen_regex2(rules):
         regexp = regexp + rule_31 + r"{1," + str(m) + r"})|"
     regexp = regexp[:-1] + ")$"
     print(regexp)
+    print(len(regexp))
     return regexp
 
 @Timer()
