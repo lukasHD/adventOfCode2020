@@ -80,6 +80,9 @@ class Tile():
     def left(self):
         return "".join([row[0] for row in self.map])
 
+    def get_inner(self):
+        return [x[1:-1] for x in self.map[1:-1]] 
+
 
 def reverse(inp: str) -> str:
     return inp[::-1]
@@ -112,6 +115,16 @@ def find_edges(tiles):
             tile.is_edge = True
         print("Possible Neighbours: {}".format(poss_neighbours))
         tile.neighbours = poss_neighbours.copy()
+
+
+def get_max(pos):
+    max_x = 0
+    max_y = 0
+    for x,y in pos.keys():
+        max_x = max(max_x, x)
+        max_y = max(max_y, y)
+    return max_x, max_y
+
 
 
 def assemble_image(tiles):
@@ -182,6 +195,12 @@ def assemble_image(tiles):
         current_tile = tiles[current_tile_id]
     print(stack)
     print(pos)
+    max_x, max_y = get_max(pos)
+    print(max_x, max_y)
+    for y in range(max_y+1):
+        for x in range(max_x+1):
+            print(pos[(x,y)], end='')
+        print()
 
 
 
@@ -260,4 +279,4 @@ if __name__ == "__main__":
     run_part_1(get_path() + "/test1", True)
     run_part_1(get_path() + "/input1")
     run_part_2(get_path() + "/test1", True)
-    run_part_2(get_path() + "/input1")
+    #run_part_2(get_path() + "/input1")
