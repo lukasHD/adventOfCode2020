@@ -197,11 +197,80 @@ def assemble_image(tiles):
     print(pos)
     max_x, max_y = get_max(pos)
     print(max_x, max_y)
+    print()
+    a = []
     for y in range(max_y+1):
+        line_a = []
         for x in range(max_x+1):
-            print(pos[(x,y)], end='')
+            print("{}".format(tiles[pos[(x,y)]].id), end=' ')
+            line_a.append(tiles[pos[(x,y)]].get_inner())
+        line = np.concatenate(line_a, axis=1)
+        a.append(line)
         print()
+        #pretty.print2DMap(line)
+    full_map = np.concatenate(a, axis=0)
+    pretty.print2DMap(full_map)
+    return deepcopy(full_map)
 
+
+def rot(t):
+    for i in range(4):
+        yield np.rot90(t, i)
+
+def fliprot(t):
+    yield from rot(t)
+    yield from rot(np.flip(t,1))
+
+
+def remove_monsters(image):
+    monster_str = ""
+    monster_str += "                  # \n"
+    monster_str += "#    ##    ##    ###\n"
+    monster_str += " #  #  #  #  #  #   "
+    print(monster_str)
+    monster_arr = [list(x) for x in monster_str.split("\n")]
+    pretty.print2DArray(monster_arr)
+    monster2 = []
+    for x, l in enumerate(monster_arr):
+        for y, v in enumerate(l):
+            if v == "#":
+                monster2.append((x,y))
+    print(monster2)
+    monster = []
+    for idx, v in np.ndenumerate(monster_arr):
+        if v == "#":
+            monster.append(idx)
+    print(monster)
+    # for all rotations and flips
+    for image in fliprot(image):
+        print("Flip rot")
+        pretty.print2DMap(image)
+        monster_cnt = 0
+        for idx, value in np.ndenumerate(image):
+            #print(idx, value)
+            matches_monster = True
+            for m_idx in monster:
+                try:
+                    if image[tuple(np.add(idx,m_idx))] != "#":
+                        matches_monster = False
+                        break
+                except IndexError:
+                    matches_monster = False
+                    break
+            if matches_monster:
+                print("found a monster starting at {}!".format(idx))
+                monster_cnt += 1
+                # replace # with O
+                for m_idx in monster:
+                    image[tuple(np.add(idx,m_idx))] = "O"
+        print("Found {:2} monsters in this flip-rot".format(monster_cnt))
+        if monster_cnt > 0:
+            pretty.print2DMap(image)
+            result = 0
+            for idx, value in np.ndenumerate(image):
+                if value == "#":
+                    result += 1
+            return result
 
 
 @Timer()
@@ -270,7 +339,9 @@ def run_part_2(in_file: str, debug: bool = False) -> int:
         print(tile.edges)
     find_edges(tiles)
     print("Start Assembling Image")
-    assemble_image(tiles)
+    image = assemble_image(tiles)
+    # now remove all monsters
+    result = remove_monsters(image)
     # code here
     print("Result = {}".format(result))
     return result
@@ -279,4 +350,4 @@ if __name__ == "__main__":
     run_part_1(get_path() + "/test1", True)
     run_part_1(get_path() + "/input1")
     run_part_2(get_path() + "/test1", True)
-    #run_part_2(get_path() + "/input1")
+    run_part_2(get_path() + "/input1")

@@ -14,9 +14,9 @@ def test_part_1_real():
 
 def test_part_2():
     result = day.run_part_2(INPUTFOLDER+"/test1")
-    assert result == 0
+    assert result == 273
 
 
 def test_part_2_real():
-    result = day.run_part_2(INPUTFOLDER+"/input2")
-    assert result == 0
+    result = day.run_part_2(INPUTFOLDER+"/input1")
+    assert result == 1607
